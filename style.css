@@ -1,0 +1,43 @@
+html, body, sve{
+  width: 100%;
+  height: 100%;
+  background-color: lightblue;
+}
+
+#slika{
+  width: 30%;
+  height: 30%;
+}
+
+#slikasen{
+  width: 15%;
+  height: 15%; 
+  
+}
+
+#sve{
+  padding-left: 40%;
+  padding-top: 10%;
+}
+#btnon {
+  background-color: green;
+  width: 60px;
+}
+#btnoff {
+  background-color: rgb(233, 94, 59);
+  width: 60px;
+}
+
+#poruka{
+  padding-left: 100px;
+  padding-bottom: 20px;
+}
+#dugmad{
+  padding-left: 75px;  
+  padding-bottom: 80px;
+}
+
+#senz{
+  padding-left: 75px;
+}
+

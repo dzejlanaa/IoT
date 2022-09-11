@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body id="body">
+
+    
+<div id="sve">
+
+    <div><img src="smoke-off.jpg" id="slika" alt="Nesto"></div>
+
+
+
+                    
+    <div id="poruka"></div>
+    
+<div id="dugmad">
+    <input type="button"  value="On" id="btnon">
+    <input type="button"  value="Off" id="btnoff">
+</div>
+
+
+<div id="senz">
+    <img src="smoke.jpg" alt="nesto drugo" id="slikasen">
+ <h3>Senzor</h3>
+</div>
+
+</div>
+
+
+
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+      
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
+        import { getDatabase, ref, onValue, set, get } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js";
+      
+      
+        // TODO: Add SDKs for Firebase products that you want to use
+      
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+      
+        // Your web app's Firebase configuration
+        
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyBiC3UQmv2lGquTLBj6k2sGutaTEY0a5ns",
+        authDomain: "iotsmokedetection-57047.firebaseapp.com",
+        databaseURL: "https://iotsmokedetection-57047-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "iotsmokedetection-57047",
+        storageBucket: "iotsmokedetection-57047.appspot.com",
+        messagingSenderId: "303422075434",
+        appId: "1:303422075434:web:0ad02589777689560fc953"
+};
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        
+        let Poruka = document.getElementById("poruka");
+        var onBtn = document.getElementById("btnon");
+        var offBtn = document.getElementById("btnoff");
+       
+      
+               
+        const firealarm = ref(db, 'firealarm');
+        onValue(firealarm, (snapshot) => {
+            const data = snapshot.val();
+            if(data) {
+                Poruka.style.color="red" 
+                Poruka.innerHTML = "Alarm upaljen!"
+            } 
+            else {
+                Poruka.style.color="blue" 
+                Poruka.innerHTML = "Alarm ugasen"
+            }
+        });    
+
+function On() {
+ 
+  document.getElementById('slika').src = 'smoke-on.jpg';
+  
+}
+
+function Off() {
+  
+    document.getElementById('slika').src = 'smoke-off.jpg';
+  
+  
+}
+        onBtn.addEventListener('click', () => {
+            set(ref(db, 'firealarm'),
+                true
+            );
+
+           
+
+            On();
+        });
+
+        offBtn.addEventListener('click', () => {
+
+             set(ref(db, 'firealarm'), 
+                false
+            );
+
+          
+          
+           Off();
+        });
+
+       
+        let smoke = document.getElementById("slikasen");
+        smoke.addEventListener('click', ()=> {
+           
+
+            set(ref(db, 'firealarm'), 
+                true
+            );
+
+            
+            On();
+        })
+
+      
+      </script>
+    
+</body>
+</html>
+
+
