@@ -14,9 +14,6 @@
 <div id="sve">
 
     <div><img src="smoke-off.jpg" id="slika" alt="Nesto"></div>
-
-
-
                     
     <div id="poruka"></div>
     
@@ -95,44 +92,38 @@ function Off() {
   
     document.getElementById('slika').src = 'smoke-off.jpg';
   
-  
 }
-        onBtn.addEventListener('click', () => {
+        
+onBtn.addEventListener('click', () => {
             set(ref(db, 'firealarm'),
                 true
             );
-
-           
-
+       
             On();
         });
+        
 
-        offBtn.addEventListener('click', () => {
-
+  offBtn.addEventListener('click', () => {
              set(ref(db, 'firealarm'), 
                 false
             );
-
-          
-          
+   
+       
            Off();
         });
 
        
         let smoke = document.getElementById("slikasen");
         smoke.addEventListener('click', ()=> {
-           
-
-            set(ref(db, 'firealarm'), 
+           set(ref(db, 'firealarm'), 
                 true
             );
-
-            
+        
             On();
         })
 
       
-      </script>
+</script>
     
 </body>
 </html>
